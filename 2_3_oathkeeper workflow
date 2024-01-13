@@ -1,0 +1,29 @@
+graph LR
+    subgraph Offline
+        bugpatch[Bug Patch] -->|patched| regression[Regression tests]
+        bugpatch -->|buggy system unpatched| instrumentationlib[Instrumentation lib]
+        instrumentationlib -->|traces| inferenceengine[Inference engine]
+        inferenceengine -->|infer| templates
+        templates -->|templates| verifier1[Verifier]
+        verifier1 -->|apply| verifiedrules[Verified rules]
+        verifiedrules -->|validate| alltests[All tests]
+        alltests --> verifier1
+    end
+
+    subgraph Production
+        system[System] --> eventtracer[Event tracer]
+        eventtracer -->|traces| verifier2[Verifier]
+        verifier2 -->|check| verifiedrules
+    end
+
+    style bugpatch fill:#f96,stroke:#333,stroke-width:2px
+    style regression fill:#f9f,stroke:#333,stroke-width:2px
+    style instrumentationlib fill:#ff9,stroke:#333,stroke-width:2px
+    style inferenceengine fill:#9cf,stroke:#333,stroke-width:2px
+    style templates fill:#9f9,stroke:#333,stroke-width:2px
+    style verifier1 fill:#ccf,stroke:#333,stroke-width:2px
+    style verifiedrules fill:#cfc,stroke:#333,stroke-width:2px
+    style alltests fill:#fc9,stroke:#333,stroke-width:2px
+    style system fill:#f9f,stroke:#333,stroke-width:2px
+    style eventtracer fill:#f6f,stroke:#333,stroke-width:2px
+    style verifier2 fill:#ccf,stroke:#333,stroke-width:2px
