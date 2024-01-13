@@ -1,0 +1,15 @@
+graph TD
+    CSmith[CSmith] -->|generates code| Compiler1[compiler 1]
+    CSmith -->|generates code| Compiler2[compiler 2]
+    CSmith -->|generates code| Compiler3[compiler 3]
+    
+    Compiler1 -->|executes code| Execute1[execute]
+    Compiler2 -->|executes code| Execute2[execute]
+    Compiler3 -->|executes code| Execute3[execute]
+    
+    Execute1 --> CompareOutput[compare output]
+    Execute2 --> CompareOutput
+    Execute3 --> CompareOutput
+    
+    CompareOutput -- "minority" --> Bug[bug]
+    CompareOutput -- "majority" --> NoBug[no bug]
