@@ -1,0 +1,44 @@
+graph TB
+    subgraph "App Layer"
+        subgraph Node1["Node"]
+            Driver1[Driver]
+            Worker1[Worker]
+            ObjectStore1[Object Store]
+            LocalScheduler1[Local Scheduler]
+            Driver1 --> ObjectStore1
+            Worker1 --> ObjectStore1
+            ObjectStore1 --> LocalScheduler1
+        end
+
+        subgraph Node2["Node"]
+            Actor[Actor]
+            Driver2[Driver]
+            ObjectStore2[Object Store]
+            LocalScheduler2[Local Scheduler]
+            Actor --> ObjectStore2
+            Driver2 --> ObjectStore2
+            ObjectStore2 --> LocalScheduler2
+        end
+
+        subgraph Node3["Node"]
+            Worker2[Worker]
+            Worker3[Worker]
+            ObjectStore3[Object Store]
+            LocalScheduler3[Local Scheduler]
+            Worker2 --> ObjectStore3
+            Worker3 --> ObjectStore3
+            ObjectStore3 --> LocalScheduler3
+        end
+    end
+
+    subgraph "System Layer (backend)"
+        GlobalScheduler[Global Scheduler]
+        GCS["Global Control Store (GCS)"]
+        Tools[Web UI / Debugging Tools / Profiling Tools / Error Diagnosis]
+        
+        LocalScheduler1 --> GlobalScheduler
+        LocalScheduler2 --> GlobalScheduler
+        LocalScheduler3 --> GlobalScheduler
+        GlobalScheduler --> GCS
+        GCS --> Tools
+    end
