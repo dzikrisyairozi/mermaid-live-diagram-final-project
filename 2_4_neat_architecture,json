@@ -1,0 +1,37 @@
+graph TB
+    subgraph TestEngine["Test Engine"]
+        TestDriver["Test Driver"]
+        ClientRMI["Client - RMI"]
+        NetPartitioner["Net Partitioner"]
+        TestDriver --> ClientRMI
+        TestDriver --> NetPartitioner
+    end
+
+    subgraph Clients
+        Client1["Client 1"]
+        Client2["Client 2"]
+        ClientRMI --> Client1
+        ClientRMI --> Client2
+    end
+
+    subgraph Servers
+        Server1["Server 1"]
+        Server2["Server 2"]
+        Server3["Server 3"]
+    end
+
+    subgraph NetworkControllers
+        NetController["Net Controller"]
+        IptablesController["iptables Controller"]
+        OpenFlowSwitch["OpenFlow API"]
+        NetPartitioner --> NetController
+        NetPartitioner --> IptablesController
+        NetController --> OpenFlowSwitch
+    end
+
+    OpenFlowSwitch --> Server1
+    OpenFlowSwitch --> Server2
+    OpenFlowSwitch --> Server3
+
+    Client1 --> OpenFlowSwitch
+    Client2 --> OpenFlowSwitch
