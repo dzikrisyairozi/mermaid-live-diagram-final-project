@@ -1,0 +1,17 @@
+graph LR
+    subgraph Agent
+        Training -- "|policy|" --> Serving
+        Serving -- "|trajectory: s0, (s1, r1), ..., (sn, rn)|" --> Training
+    end
+
+    subgraph Environment
+        Simulation
+    end
+
+    Serving -- "|action (ai)|" --> Simulation
+    Simulation -- "|state (si+1)|" --> Serving
+    Simulation -- "|reward (ri+1)|" --> Serving
+
+    style Training fill:#f9f,stroke:#333,stroke-width:2px
+    style Serving fill:#ccf,stroke:#333,stroke-width:2px
+    style Simulation fill:#cfc,stroke:#333,stroke-width:2px
