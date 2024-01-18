@@ -1,0 +1,38 @@
+graph TD;
+    A[Start] --> B[Random Program Generator];
+    B -->|Initiates| C[Global Environment];
+    B -->|Initiates| D[Local Environment];
+    B -->|Uses| E[Grammar and Probability Tables];
+    C -->|Defines| F[Type, Variable, Function Definitions];
+    D -->|Handles| G[Context-Sensitive Pointer Analysis];
+    E -->|Guides| H[Program Generation];
+    H -->|Structure Creation| I[Dataflow Transfer Functions];
+    I -->|Analysis| J[Safety Checks];
+    J -->|Verification| K[Code Fragment Generation];
+    K -->|Commit Code| L[Final Program Output];
+    L -->|Generates| M[Checksum Calculation];
+    M -->|Results| N[End - Bug Detection];
+    G -->|Affects| H;
+    F -->|Used in| H;
+    K -->|Updates| C;
+    K -->|Updates| D;
+
+    subgraph Program Generation Phase
+    H
+    I
+    J
+    K
+    end
+
+    subgraph Environment Management
+    C
+    D
+    F
+    G
+    end
+
+    subgraph Output & Evaluation
+    L
+    M
+    N
+    end
