@@ -1,0 +1,29 @@
+graph TD
+    subgraph Generator
+    grammar[Python Grammar/Patterns] --> A[Generator]
+    feedbackStruktur[Feedback: Program Structure] --> A
+    feedbackTestCase[Feedback: Test Case] --> A
+    A -- "Output: Python Program using Ray" --> B((Directory for Generated Programs))
+    end
+
+    subgraph Runner
+    B -- "Input: Python Programs" --> D[Runner]
+    D -- "Output: Execution Logs" --> E((Directory for Execution Logs))
+    end
+
+    subgraph Observer
+    E -- "Input: Execution Logs" --> F[Observer]
+    F -- "Feedback: Program Structure" --> feedbackStruktur
+    F -- "Feedback: Test Case" --> feedbackTestCase
+    F -- "Detects Bug/Anomaly" --> G[Detected Bugs/Anomalies]
+    end
+
+    G -- "Output: Bug Reports" --> H((Bug Reports Directory))
+    H -- "Report Bug on GitHub" --> I[GitHub Repository Ray]
+
+    classDef component fill:#f9f,stroke:#333,stroke-width:4px;
+    classDef directory fill:#bbf,stroke:#33f,stroke-width:2px;
+    classDef feedback fill:#ffa,stroke:#aa3,stroke-width:2px;
+    class A,D,F component;
+    class B,E,H directory;
+    class grammar,feedbackStruktur,feedbackTestCase feedback;
