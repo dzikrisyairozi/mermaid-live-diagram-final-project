@@ -1,0 +1,18 @@
+graph TD
+    subgraph Generator
+    inputGrammar[Python Grammar/Patterns] --> parser[Parser]
+    inputFeedback[Observer Feedback] --> parser
+    parser --> integrator[Integrator]
+    integrator --> programLogicGenerator[Program Logic Generator]
+    integrator --> testCasesGenerator[Test Cases Generator]
+    programLogicGenerator --> programBuilder[Program Builder]
+    testCasesGenerator --> programBuilder
+    programBuilder --> outputProgram[Output: Ray Python Program]
+    end
+
+    classDef input fill:#f4f4c8,stroke:#333,stroke-width:2px;
+    classDef function fill:#c8f4d8,stroke:#333,stroke-width:2px;
+    classDef output fill:#c8d8f4,stroke:#333,stroke-width:2px;
+    class inputGrammar,inputFeedback input;
+    class parser,integrator,programLogicGenerator,testCasesGenerator,programBuilder function;
+    class outputProgram output;
