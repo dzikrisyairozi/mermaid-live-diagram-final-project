@@ -1,0 +1,27 @@
+graph TD
+    A[Execution Log Directory] -->|Analyze Logs| B[Log Analyzer]
+    B -->|Identify Patterns & Anomalies| C[Issue Classifier]
+    C --> D[No Error Detected]
+    C --> E[Error Not Bug]
+    C --> F[Bug/Anomaly Detected]
+    
+    D -->|Generate Feedback| G[Feedback Directory]
+    E -->|Generate Feedback| G
+    F -->|Generate Bug Report| H[Bug Report Directory]
+    
+    G -->|Feedback to Generator| I[Continue Generating Tests]
+    G -->|Feedback to Generator| J[Refine Test Cases/Program Structure]
+    H -->|Feedback to Generator| K[Stop Program Generation & Focus on Bug]
+    
+    H -->|Report Issue| L[GitHub Issue Tracker]
+
+    classDef directory fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef process fill:#bbf,stroke:#333,stroke-width:4px;
+    classDef decision fill:#f4f,stroke:#333,stroke-width:2px;
+    classDef action fill:#ff9,stroke:#333,stroke-width:2px;
+    
+    class A directory;
+    class B,C process;
+    class D,E,F decision;
+    class G,H directory;
+    class I,J,K,L action;
