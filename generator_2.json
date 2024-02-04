@@ -1,0 +1,16 @@
+graph TD
+
+    A[Feedback from Observer] -->|1. Parse Feedback| B[Feedback Parser]
+    C[Python Grammar] -->|2. Parse Grammar| D[Grammar Parser]
+    B -->|3. Integrate Feedback| E[Integration Module]
+    D -->|With Parsed Grammar| E
+    E -->|4. Generate Integrated Grammar| F[Program Builder]
+    F -->|5. Output| G[Ray Python Programs]
+
+    classDef input fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef process fill:#bbf,stroke:#333,stroke-width:4px;
+    classDef output fill:#f4f,stroke:#333,stroke-width:2px;
+
+    class A,C input;
+    class B,D,E,F process;
+    class G output;
